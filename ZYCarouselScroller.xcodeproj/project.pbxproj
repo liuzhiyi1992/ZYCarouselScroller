@@ -14,6 +14,8 @@
 		554262101DE2A3880094A869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5542620F1DE2A3880094A869 /* Assets.xcassets */; };
 		554262131DE2A3880094A869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554262111DE2A3880094A869 /* LaunchScreen.storyboard */; };
 		5542621E1DE2A3880094A869 /* ZYCarouselScrollerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542621D1DE2A3880094A869 /* ZYCarouselScrollerTests.m */; };
+		5542622B1DE2A4370094A869 /* ZYCarouselScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542622A1DE2A4370094A869 /* ZYCarouselScroller.m */; };
+		5542622E1DE2E3CD0094A869 /* DemoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		554262191DE2A3880094A869 /* ZYCarouselScrollerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZYCarouselScrollerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5542621D1DE2A3880094A869 /* ZYCarouselScrollerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYCarouselScrollerTests.m; sourceTree = "<group>"; };
 		5542621F1DE2A3880094A869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554262291DE2A4370094A869 /* ZYCarouselScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCarouselScroller.h; sourceTree = "<group>"; };
+		5542622A1DE2A4370094A869 /* ZYCarouselScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCarouselScroller.m; sourceTree = "<group>"; };
+		5542622C1DE2E3CD0094A869 /* DemoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCollectionViewCell.h; sourceTree = "<group>"; };
+		5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		554262021DE2A3880094A869 /* ZYCarouselScroller */ = {
 			isa = PBXGroup;
 			children = (
+				554262281DE2A3C80094A869 /* Classes */,
 				554262061DE2A3880094A869 /* AppDelegate.h */,
 				554262071DE2A3880094A869 /* AppDelegate.m */,
 				554262091DE2A3880094A869 /* ViewController.h */,
@@ -90,6 +97,8 @@
 				554262111DE2A3880094A869 /* LaunchScreen.storyboard */,
 				554262141DE2A3880094A869 /* Info.plist */,
 				554262031DE2A3880094A869 /* Supporting Files */,
+				5542622C1DE2E3CD0094A869 /* DemoCollectionViewCell.h */,
+				5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */,
 			);
 			path = ZYCarouselScroller;
 			sourceTree = "<group>";
@@ -109,6 +118,15 @@
 				5542621F1DE2A3880094A869 /* Info.plist */,
 			);
 			path = ZYCarouselScrollerTests;
+			sourceTree = "<group>";
+		};
+		554262281DE2A3C80094A869 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				554262291DE2A4370094A869 /* ZYCarouselScroller.h */,
+				5542622A1DE2A4370094A869 /* ZYCarouselScroller.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +235,8 @@
 			files = (
 				5542620B1DE2A3880094A869 /* ViewController.m in Sources */,
 				554262081DE2A3880094A869 /* AppDelegate.m in Sources */,
+				5542622B1DE2A4370094A869 /* ZYCarouselScroller.m in Sources */,
+				5542622E1DE2E3CD0094A869 /* DemoCollectionViewCell.m in Sources */,
 				554262051DE2A3880094A869 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -341,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

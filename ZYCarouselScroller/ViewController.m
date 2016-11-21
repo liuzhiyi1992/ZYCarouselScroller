@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "ZYCarouselScroller.h"
+#import "DemoCollectionViewCell.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self setupZYCarousrlScroller];
+}
+
+- (void)setupZYCarousrlScroller {
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    ZYCarouselScroller *zyCarouselScroller =
+    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 260)
+                      collectionViewCellClazz:@"DemoCollectionViewCell"
+                               cellIdentifier:[DemoCollectionViewCell getCellIdentifier]
+                                     cellSize:CGSizeMake(300, 200)
+                                      cellGap:10
+                      updateCarouselCellBlock:^(UICollectionViewCell *cell, NSDictionary *dataDict) {
+                          [(DemoCollectionViewCell *)cell updateCellWithDataDict:dataDict];
+                      }];
+    zyCarouselScroller.dataList = @[@{kMAIN_IMAGE_NAME:@"scenic_0"},
+                                    @{kMAIN_IMAGE_NAME:@"scenic_1"},
+                                    @{kMAIN_IMAGE_NAME:@"scenic_2"},
+                                    @{kMAIN_IMAGE_NAME:@"scenic_3"},
+                                    @{kMAIN_IMAGE_NAME:@"scenic_4"}];
+    zyCarouselScroller.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:zyCarouselScroller];
 }
 
 
