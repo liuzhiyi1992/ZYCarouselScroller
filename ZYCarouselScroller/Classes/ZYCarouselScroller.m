@@ -113,6 +113,7 @@ NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
     }
     NSLog(@"动画完成");
     self.isDoingEndDraggingAutoPositionAnim = NO;
+    //todo 看看runloop休眠前做可不可以
     //回归中央副本
 //    CGPoint locationPoint = CGPointMake(_collectionView.center.x + scrollView.contentOffset.x, _collectionView.center.y);
 //    NSIndexPath *currentIndexPath = [_collectionView indexPathForItemAtPoint:locationPoint];
