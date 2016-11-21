@@ -11,11 +11,9 @@
 #import "DemoCollectionViewCell.h"
 
 @interface ViewController ()
-
 @end
 
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupZYCarousrlScroller];
@@ -46,6 +44,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end

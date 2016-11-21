@@ -10,7 +10,7 @@
 
 #define LIMIT_CHANGE_SCALE 0.2
 #define BACKGROUND_COLOR_DEFAULT [UIColor whiteColor]
-NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
+NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
 
 @interface ZYCarouselScroller () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -20,7 +20,7 @@ NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
 @property (assign, nonatomic) CGFloat collectionViewCellGap;
 @property (assign, nonatomic) CGFloat lastScrollOffsetX;
 @property (assign, nonatomic) CGFloat ratioCoefficient;//切换比例系数
-@property (assign, nonatomic) BOOL isDoingEndDraggingAutoPositionAnim;
+@property (assign, nonatomic) BOOL needsRelocatedCarousel;
 @end
 
 @implementation ZYCarouselScroller
@@ -48,6 +48,16 @@ NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
     NSDictionary *views = @{@"collectionView":_collectionView};
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    
+    //runloop observe
+    __weak __typeof(&*self)weakSelf = self;
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopBeforeWaiting, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        if (weakSelf.needsRelocatedCarousel && activity == kCFRunLoopBeforeWaiting) {
+            NSLog(@"需要重定位");
+            weakSelf.needsRelocatedCarousel = NO;
+        }
+    });
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
 }
 
 /**
@@ -108,18 +118,14 @@ NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    if (!_isDoingEndDraggingAutoPositionAnim) {
-        return;
-    }
-    NSLog(@"动画完成");
-    self.isDoingEndDraggingAutoPositionAnim = NO;
-    //todo 看看runloop休眠前做可不可以
+    /*
     //回归中央副本
-//    CGPoint locationPoint = CGPointMake(_collectionView.center.x + scrollView.contentOffset.x, _collectionView.center.y);
-//    NSIndexPath *currentIndexPath = [_collectionView indexPathForItemAtPoint:locationPoint];
-//    NSUInteger relativeIndex = currentIndexPath.row%_dataList.count;
-//    NSUInteger absoluteIndex = round(REPETITION_COEFFICIENT/2)*_dataList.count + relativeIndex;
-//    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:absoluteIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    CGPoint locationPoint = CGPointMake(_collectionView.center.x + scrollView.contentOffset.x, _collectionView.center.y);
+    NSIndexPath *currentIndexPath = [_collectionView indexPathForItemAtPoint:locationPoint];
+    NSUInteger relativeIndex = currentIndexPath.row%_dataList.count;
+    NSUInteger absoluteIndex = round(REPETITION_COEFFICIENT/2)*_dataList.count + relativeIndex;
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:absoluteIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+     */
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -143,7 +149,7 @@ NSUInteger const REPETITION_COEFFICIENT = 3;//创建副本数量
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    self.isDoingEndDraggingAutoPositionAnim = YES;
+    self.needsRelocatedCarousel = YES;
     [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
 }
 
