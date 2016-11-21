@@ -20,7 +20,6 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
 @property (assign, nonatomic) CGFloat collectionViewCellGap;
 @property (assign, nonatomic) CGFloat lastScrollOffsetX;
 @property (assign, nonatomic) CGFloat ratioCoefficient;//切换比例系数
-@property (assign, nonatomic) BOOL needsRelocatedCarousel;
 @end
 
 @implementation ZYCarouselScroller
@@ -50,6 +49,7 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
     //runloop observe
+    /*
     __weak __typeof(&*self)weakSelf = self;
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopBeforeWaiting, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         if (weakSelf.needsRelocatedCarousel && activity == kCFRunLoopBeforeWaiting) {
@@ -58,6 +58,7 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
         }
     });
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
+     */
 }
 
 /**
@@ -145,12 +146,26 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
+//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    self.needsRelocatedCarousel = YES;
-    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
+//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    CGFloat currentOffsetX = scrollView.contentOffset.x;
+    CGFloat unitLength = _collectionViewCellSize.width + _collectionViewCellGap;
+    CGFloat leadingOffset = _collectionViewCellSize.width - (self.frame.size.width - _collectionViewCellSize.width - 2*_collectionViewCellGap)/2;
+    NSUInteger index;
+    if ((*targetContentOffset).x > currentOffsetX) {//左滑
+        index = roundf(currentOffsetX/unitLength);
+    } else if ((*targetContentOffset).x < currentOffsetX) {//右滑
+        index = roundf(currentOffsetX/unitLength) - 2;
+    }
+    //下一个锚点所处的offset
+    CGFloat targetOffsetX = index*unitLength + leadingOffset;
+    *targetContentOffset = CGPointMake(targetOffsetX, scrollView.contentOffset.y);
 }
 
 #pragma mark - GET SET
