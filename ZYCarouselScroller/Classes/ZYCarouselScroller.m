@@ -47,18 +47,6 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     NSDictionary *views = @{@"collectionView":_collectionView};
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
-    
-    //runloop observe
-    /*
-    __weak __typeof(&*self)weakSelf = self;
-    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopBeforeWaiting, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-        if (weakSelf.needsRelocatedCarousel && activity == kCFRunLoopBeforeWaiting) {
-            NSLog(@"需要重定位");
-            weakSelf.needsRelocatedCarousel = NO;
-        }
-    });
-    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
-     */
 }
 
 /**
