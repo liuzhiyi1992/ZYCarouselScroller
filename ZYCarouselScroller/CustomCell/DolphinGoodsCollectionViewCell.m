@@ -52,6 +52,8 @@
 }
 
 - (void)setupCell {
+    self.layer.cornerRadius = 6.f;
+    self.layer.masksToBounds = YES;
     self.backgroundColor = [UIColor whiteColor];
     self.mainImageView = [[UIImageView alloc] init];
     [_mainImageView setBackgroundColor:[UIColor grayColor]];
@@ -71,36 +73,28 @@
     self.imageViewList = [imageArray copy];
     
     NSMutableArray *titleLabelArray = [NSMutableArray array];
-    UILabel *firstTitleLabel = [[UILabel alloc] init];
+    UILabel *firstTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:firstTitleLabel];
     [titleLabelArray addObject:firstTitleLabel];
-    UILabel *secondTitleLabel = [[UILabel alloc] init];
+    UILabel *secondTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:secondTitleLabel];
     [titleLabelArray addObject:secondTitleLabel];
-    UILabel *thirdTitleLabel = [[UILabel alloc] init];
+    UILabel *thirdTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:thirdTitleLabel];
     [titleLabelArray addObject:thirdTitleLabel];
     self.titleLabelList = [titleLabelArray copy];
-    //虚拟
-    [firstTitleLabel setText:@"标题"];
-    [secondTitleLabel setText:@"标题"];
-    [thirdTitleLabel setText:@"标题"];
     
     NSMutableArray *priceLabelArray = [NSMutableArray array];
-    UILabel *firstPriceLabel = [[UILabel alloc] init];
+    UILabel *firstPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:firstPriceLabel];
     [priceLabelArray addObject:firstPriceLabel];
-    UILabel *secondPriceLabel = [[UILabel alloc] init];
+    UILabel *secondPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:secondPriceLabel];
     [priceLabelArray addObject:secondPriceLabel];
-    UILabel *thirdPriceLabel = [[UILabel alloc] init];
+    UILabel *thirdPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:thirdPriceLabel];
     [priceLabelArray addObject:thirdPriceLabel];
     self.priceLabelList = [priceLabelArray copy];
-    //虚拟
-    [firstPriceLabel setText:@"价格"];
-    [secondPriceLabel setText:@"价格"];
-    [thirdPriceLabel setText:@"价格"];
     
     __weak __typeof(&*self)weakSelf = self;
     [_mainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,20 +123,20 @@
     [firstTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstImageView.mas_bottom);
         make.centerX.equalTo(firstImageView);
-        make.width.equalTo(firstImageView);
+        make.width.equalTo(firstImageView).multipliedBy(0.9);
     }];
     [secondTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstTitleLabel);
         make.centerX.equalTo(secondImageView);
-        make.width.equalTo(secondImageView);
+        make.width.equalTo(secondImageView).multipliedBy(0.9);
     }];
     [thirdTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstTitleLabel);
         make.centerX.equalTo(thirdImageView);
-        make.width.equalTo(thirdImageView);
+        make.width.equalTo(thirdImageView).multipliedBy(0.9);
     }];
     [firstPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(firstTitleLabel.mas_bottom);
+        make.top.equalTo(firstTitleLabel.mas_bottom).offset(5);
         make.centerX.equalTo(firstTitleLabel);
     }];
     [secondPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,8 +151,10 @@
 
 - (UILabel *)createTitleLabel {
     UILabel *label = [[UILabel alloc] init];
-    [label setFont:[UIFont systemFontOfSize:14.f]];
-    [label setTextColor:[UIColor lightGrayColor]];
+    [label setFont:[UIFont systemFontOfSize:12.f]];
+    [label setTextColor:[UIColor colorWithWhite:0 alpha:1.f]];
+    //虚拟
+    [label setText:@"跨境商品标题有点长"];
     return label;
 }
 
@@ -166,6 +162,7 @@
     UILabel *label = [[UILabel alloc] init];
     [label setFont:[UIFont systemFontOfSize:13.f]];
     [label setTextColor:[UIColor redColor]];
+    [label setText:@"¥192.00"];
     return label;
 }
 
