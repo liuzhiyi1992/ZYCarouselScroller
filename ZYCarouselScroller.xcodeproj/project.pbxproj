@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50510CACE14C8C8ACA935729 /* libPods-ZYCarouselScroller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7332B0338F18AD439D51B259 /* libPods-ZYCarouselScroller.a */; };
 		554262051DE2A3880094A869 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554262041DE2A3880094A869 /* main.m */; };
 		554262081DE2A3880094A869 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554262071DE2A3880094A869 /* AppDelegate.m */; };
 		5542620B1DE2A3880094A869 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542620A1DE2A3880094A869 /* ViewController.m */; };
@@ -15,7 +16,8 @@
 		554262131DE2A3880094A869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554262111DE2A3880094A869 /* LaunchScreen.storyboard */; };
 		5542621E1DE2A3880094A869 /* ZYCarouselScrollerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542621D1DE2A3880094A869 /* ZYCarouselScrollerTests.m */; };
 		5542622B1DE2A4370094A869 /* ZYCarouselScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542622A1DE2A4370094A869 /* ZYCarouselScroller.m */; };
-		5542622E1DE2E3CD0094A869 /* DemoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */; };
+		5568CB3E1DE3E12C00C62D42 /* DemoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568CB3D1DE3E12C00C62D42 /* DemoCollectionViewCell.m */; };
+		5568CB411DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568CB401DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BEFCE8E8671C49D4DB20BE3 /* Pods-ZYCarouselScroller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZYCarouselScroller.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZYCarouselScroller/Pods-ZYCarouselScroller.release.xcconfig"; sourceTree = "<group>"; };
 		554262001DE2A3880094A869 /* ZYCarouselScroller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYCarouselScroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554262041DE2A3880094A869 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554262061DE2A3880094A869 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,8 +47,12 @@
 		5542621F1DE2A3880094A869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554262291DE2A4370094A869 /* ZYCarouselScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCarouselScroller.h; sourceTree = "<group>"; };
 		5542622A1DE2A4370094A869 /* ZYCarouselScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCarouselScroller.m; sourceTree = "<group>"; };
-		5542622C1DE2E3CD0094A869 /* DemoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCollectionViewCell.h; sourceTree = "<group>"; };
-		5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCollectionViewCell.m; sourceTree = "<group>"; };
+		5568CB3C1DE3E12C00C62D42 /* DemoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCollectionViewCell.h; sourceTree = "<group>"; };
+		5568CB3D1DE3E12C00C62D42 /* DemoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCollectionViewCell.m; sourceTree = "<group>"; };
+		5568CB3F1DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DolphinGoodsCollectionViewCell.h; sourceTree = "<group>"; };
+		5568CB401DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DolphinGoodsCollectionViewCell.m; sourceTree = "<group>"; };
+		7332B0338F18AD439D51B259 /* libPods-ZYCarouselScroller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZYCarouselScroller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7387CCAB881C149C62D1BB60 /* Pods-ZYCarouselScroller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZYCarouselScroller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZYCarouselScroller/Pods-ZYCarouselScroller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50510CACE14C8C8ACA935729 /* libPods-ZYCarouselScroller.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +80,8 @@
 				554262021DE2A3880094A869 /* ZYCarouselScroller */,
 				5542621C1DE2A3880094A869 /* ZYCarouselScrollerTests */,
 				554262011DE2A3880094A869 /* Products */,
+				858F1B5168A83B6C10587130 /* Pods */,
+				8D30837B5856C035ED7B71DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				554262281DE2A3C80094A869 /* Classes */,
+				5568CB3B1DE3E12C00C62D42 /* CustomCell */,
 				554262061DE2A3880094A869 /* AppDelegate.h */,
 				554262071DE2A3880094A869 /* AppDelegate.m */,
 				554262091DE2A3880094A869 /* ViewController.h */,
@@ -97,8 +108,6 @@
 				554262111DE2A3880094A869 /* LaunchScreen.storyboard */,
 				554262141DE2A3880094A869 /* Info.plist */,
 				554262031DE2A3880094A869 /* Supporting Files */,
-				5542622C1DE2E3CD0094A869 /* DemoCollectionViewCell.h */,
-				5542622D1DE2E3CD0094A869 /* DemoCollectionViewCell.m */,
 			);
 			path = ZYCarouselScroller;
 			sourceTree = "<group>";
@@ -129,6 +138,34 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		5568CB3B1DE3E12C00C62D42 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				5568CB3C1DE3E12C00C62D42 /* DemoCollectionViewCell.h */,
+				5568CB3D1DE3E12C00C62D42 /* DemoCollectionViewCell.m */,
+				5568CB3F1DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.h */,
+				5568CB401DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.m */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		858F1B5168A83B6C10587130 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7387CCAB881C149C62D1BB60 /* Pods-ZYCarouselScroller.debug.xcconfig */,
+				2BEFCE8E8671C49D4DB20BE3 /* Pods-ZYCarouselScroller.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8D30837B5856C035ED7B71DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7332B0338F18AD439D51B259 /* libPods-ZYCarouselScroller.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 554262221DE2A3880094A869 /* Build configuration list for PBXNativeTarget "ZYCarouselScroller" */;
 			buildPhases = (
+				574C3D13604F44A3CF44D8A1 /* [CP] Check Pods Manifest.lock */,
 				554261FC1DE2A3880094A869 /* Sources */,
 				554261FD1DE2A3880094A869 /* Frameworks */,
 				554261FE1DE2A3880094A869 /* Resources */,
+				27B55572223CCDFA3476FD23 /* [CP] Embed Pods Frameworks */,
+				D3F44358090C0D146A448634 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,6 +268,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27B55572223CCDFA3476FD23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZYCarouselScroller/Pods-ZYCarouselScroller-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		574C3D13604F44A3CF44D8A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D3F44358090C0D146A448634 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZYCarouselScroller/Pods-ZYCarouselScroller-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		554261FC1DE2A3880094A869 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -235,8 +323,9 @@
 			files = (
 				5542620B1DE2A3880094A869 /* ViewController.m in Sources */,
 				554262081DE2A3880094A869 /* AppDelegate.m in Sources */,
+				5568CB411DE3E18D00C62D42 /* DolphinGoodsCollectionViewCell.m in Sources */,
 				5542622B1DE2A4370094A869 /* ZYCarouselScroller.m in Sources */,
-				5542622E1DE2E3CD0094A869 /* DemoCollectionViewCell.m in Sources */,
+				5568CB3E1DE3E12C00C62D42 /* DemoCollectionViewCell.m in Sources */,
 				554262051DE2A3880094A869 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +460,7 @@
 		};
 		554262231DE2A3880094A869 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7387CCAB881C149C62D1BB60 /* Pods-ZYCarouselScroller.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 82KQAUTE69;
@@ -383,6 +473,7 @@
 		};
 		554262241DE2A3880094A869 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BEFCE8E8671C49D4DB20BE3 /* Pods-ZYCarouselScroller.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 82KQAUTE69;
@@ -438,6 +529,7 @@
 				554262241DE2A3880094A869 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		554262251DE2A3880094A869 /* Build configuration list for PBXNativeTarget "ZYCarouselScrollerTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +538,7 @@
 				554262271DE2A3880094A869 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
