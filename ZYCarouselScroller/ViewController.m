@@ -40,12 +40,13 @@
     [self.view addSubview:zyCarouselScroller];
     
     
-    
+    CGFloat cellWidth = 300;
+    CGFloat cellHeight = 260;
     ZYCarouselScroller *zyCarouselScrollerSecond =
-    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 260, screenWidth, 260)
+    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 260, screenWidth, 360)
                       collectionViewCellClazz:@"DolphinGoodsCollectionViewCell"
                                cellIdentifier:[DolphinGoodsCollectionViewCell getCellIdentifier]
-                                     cellSize:CGSizeMake(300, 200)
+                                     cellSize:CGSizeMake(cellWidth, cellHeight)
                                       cellGap:10
                       updateCarouselCellBlock:^(UICollectionViewCell *cell, NSDictionary *dataDict) {
                           [(DolphinGoodsCollectionViewCell *)cell updateCellWithDataDict:dataDict];
