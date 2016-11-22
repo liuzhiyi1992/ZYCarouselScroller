@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ZYCarouselScroller.h"
 #import "DemoCollectionViewCell.h"
+#import "DolphinGoodsCollectionViewCell.h"
 
 @interface ViewController ()
 @end
@@ -37,6 +38,20 @@
                                     @{kMAIN_IMAGE_NAME:@"scenic_4"}];
     zyCarouselScroller.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:zyCarouselScroller];
+    
+    
+    
+    ZYCarouselScroller *zyCarouselScrollerSecond =
+    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 260, screenWidth, 260)
+                      collectionViewCellClazz:@"DolphinGoodsCollectionViewCell"
+                               cellIdentifier:[DolphinGoodsCollectionViewCell getCellIdentifier]
+                                     cellSize:CGSizeMake(300, 200)
+                                      cellGap:10
+                      updateCarouselCellBlock:^(UICollectionViewCell *cell, NSDictionary *dataDict) {
+                          [(DolphinGoodsCollectionViewCell *)cell updateCellWithDataDict:dataDict];
+                      }];
+//    zyCarouselScrollerSecond.dataList = @[];
+    [self.view addSubview:zyCarouselScrollerSecond];
 }
 
 
