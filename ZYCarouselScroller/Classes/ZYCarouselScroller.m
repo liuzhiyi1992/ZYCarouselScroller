@@ -145,15 +145,11 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     [self makeScaleWithIndexPath:[NSIndexPath indexPathForRow:currentIndexFloat+1 inSection:0]];
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
-}
-
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (velocity.x == 0) {
+        [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
+        return;
+    }
     CGFloat currentOffsetX = scrollView.contentOffset.x;
     CGFloat unitLength = _collectionViewCellSize.width + _collectionViewCellGap;
     CGFloat leadingOffset = _collectionViewCellSize.width - (self.frame.size.width - _collectionViewCellSize.width - 2*_collectionViewCellGap)/2;
