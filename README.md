@@ -17,5 +17,5 @@ carousel scroller with your custom CardCell.
 
 <br>
 #License  
-ZYCarouselScroller is released under the MIT license.
+ZYCarouselScroller is released under the MIT license.  
 Demo样式和图片资源取自应用海豚村, 仅供学习参考, 如有任何问题欢迎联系, 谢谢
