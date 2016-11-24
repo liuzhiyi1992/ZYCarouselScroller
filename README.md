@@ -11,5 +11,11 @@ carousel scroller with your custom CardCell.
 <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" />
 </p>
 
+<br>
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYCarouselScroller/%E6%9C%AA%E6%A0%87%E9%A2%98-4.gif)
 <br>
+
+<br>
+#License  
+ZYCarouselScroller is released under the MIT license.
+Demo样式和图片资源取自应用海豚村, 仅供学习参考, 如有任何问题欢迎联系, 谢谢
