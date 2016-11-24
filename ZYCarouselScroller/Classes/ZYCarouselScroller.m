@@ -10,7 +10,10 @@
 
 #define LIMIT_CHANGE_SCALE 0.2
 #define BACKGROUND_COLOR_DEFAULT [UIColor whiteColor]
-NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
+
+#define INFINITE_REPEAT 300
+#define NO_INFINITE_REPEAT 1
+NSUInteger const REPETITION_COEFFICIENT = NO_INFINITE_REPEAT;//创建副本数量
 
 @interface ZYCarouselScroller () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -135,6 +138,8 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
         index = roundf(currentOffsetX/unitLength);
     } else if ((*targetContentOffset).x < currentOffsetX) {//右滑
         index = roundf(currentOffsetX/unitLength) - 2;
+    } else {
+        return;
     }
     //下一个锚点所处的offset
     CGFloat targetOffsetX = index*unitLength + leadingOffset;
