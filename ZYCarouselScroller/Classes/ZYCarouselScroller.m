@@ -118,17 +118,6 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     return _collectionViewCellGap;
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    /*
-    //回归中央副本
-    CGPoint locationPoint = CGPointMake(_collectionView.center.x + scrollView.contentOffset.x, _collectionView.center.y);
-    NSIndexPath *currentIndexPath = [_collectionView indexPathForItemAtPoint:locationPoint];
-    NSUInteger relativeIndex = currentIndexPath.row%_dataList.count;
-    NSUInteger absoluteIndex = round(REPETITION_COEFFICIENT/2)*_dataList.count + relativeIndex;
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:absoluteIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-     */
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //dir
     CGFloat offsetX = scrollView.contentOffset.x;
@@ -197,13 +186,20 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     [_collectionView layoutIfNeeded];
     //滑动到中央副本
     NSInteger operateIndexPathRow = round(REPETITION_COEFFICIENT/2) * _dataList.count;
-    NSLog(@"处理的row是%ld", (long)operateIndexPathRow);
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    //旧逻辑
+    //[_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     __weak __typeof(&*self)weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow-1 inSection:0]];
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0]];
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow+1 inSection:0]];
+    dispatch_async (dispatch_get_main_queue (),  ^{
+        CGFloat unitLength = _collectionViewCellSize.width + weakSelf.collectionViewCellGap;
+        CGFloat leadingOffset = weakSelf.collectionViewCellSize.width - (self.frame.size.width - weakSelf.collectionViewCellSize.width - 2*weakSelf.collectionViewCellGap)/2;
+        //下一个锚点所处的offset
+        CGFloat targetOffsetX = (operateIndexPathRow-1)*unitLength + leadingOffset;
+        [weakSelf.collectionView setContentOffset:CGPointMake(targetOffsetX, 0)];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow-1 inSection:0]];
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0]];
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow+1 inSection:0]];
+        });
     });
 }
 @end
