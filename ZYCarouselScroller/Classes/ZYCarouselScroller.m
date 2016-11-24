@@ -178,7 +178,7 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     //[_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     __weak __typeof(&*self)weakSelf = self;
     dispatch_async (dispatch_get_main_queue (),  ^{
-        CGFloat unitLength = _collectionViewCellSize.width + weakSelf.collectionViewCellGap;
+        CGFloat unitLength = weakSelf.collectionViewCellSize.width + weakSelf.collectionViewCellGap;
         CGFloat leadingOffset = weakSelf.collectionViewCellSize.width - (self.frame.size.width - weakSelf.collectionViewCellSize.width - 2*weakSelf.collectionViewCellGap)/2;
         //下一个锚点所处的offset
         CGFloat targetOffsetX = (operateIndexPathRow-1)*unitLength + leadingOffset;
