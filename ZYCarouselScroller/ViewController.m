@@ -22,6 +22,7 @@
 
 - (void)setupZYCarousrlScroller {
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    //Style1
     ZYCarouselScroller *zyCarouselScroller =
     [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 260)
                       collectionViewCellClazz:@"DemoCollectionViewCell"
@@ -36,22 +37,23 @@
                                     @{kMAIN_IMAGE_NAME:@"scenic_2"},
                                     @{kMAIN_IMAGE_NAME:@"scenic_3"},
                                     @{kMAIN_IMAGE_NAME:@"scenic_4"}];
-    zyCarouselScroller.backgroundColor = [UIColor lightGrayColor];
+    zyCarouselScroller.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:zyCarouselScroller];
     
-    
-    
+    //Style2
+    CGFloat cellWidth = 300;
+    CGFloat cellHeight = 265;
     ZYCarouselScroller *zyCarouselScrollerSecond =
-    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 260, screenWidth, 260)
+    [[ZYCarouselScroller alloc] initWithFrame:CGRectMake(0, 260, screenWidth, 320)
                       collectionViewCellClazz:@"DolphinGoodsCollectionViewCell"
                                cellIdentifier:[DolphinGoodsCollectionViewCell getCellIdentifier]
-                                     cellSize:CGSizeMake(300, 200)
+                                     cellSize:CGSizeMake(cellWidth, cellHeight)
                                       cellGap:10
                       updateCarouselCellBlock:^(UICollectionViewCell *cell, NSDictionary *dataDict) {
                           [(DolphinGoodsCollectionViewCell *)cell updateCellWithDataDict:dataDict];
                       }];
     zyCarouselScrollerSecond.dataList = [self generateDolphinDataList];
-    zyCarouselScrollerSecond.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    zyCarouselScrollerSecond.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     [self.view addSubview:zyCarouselScrollerSecond];
 }
 

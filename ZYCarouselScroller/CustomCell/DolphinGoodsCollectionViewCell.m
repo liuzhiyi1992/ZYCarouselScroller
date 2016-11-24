@@ -10,6 +10,8 @@
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
 
+#define MAIN_IMAGEVIEW_H_W_RATIO 0.41
+
 @interface DolphinGoodsCollectionViewCell ()
 @property (strong, nonatomic) UIImageView *mainImageView;
 @property (copy, nonatomic) NSArray *imageViewList;
@@ -50,8 +52,10 @@
 }
 
 - (void)setupCell {
+    self.layer.cornerRadius = 6.f;
+    self.layer.masksToBounds = YES;
+    self.backgroundColor = [UIColor whiteColor];
     self.mainImageView = [[UIImageView alloc] init];
-    [self observeBackgroundImageChange];
     [_mainImageView setBackgroundColor:[UIColor grayColor]];
     [self.contentView addSubview:_mainImageView];
     
@@ -69,47 +73,39 @@
     self.imageViewList = [imageArray copy];
     
     NSMutableArray *titleLabelArray = [NSMutableArray array];
-    UILabel *firstTitleLabel = [[UILabel alloc] init];
+    UILabel *firstTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:firstTitleLabel];
     [titleLabelArray addObject:firstTitleLabel];
-    UILabel *secondTitleLabel = [[UILabel alloc] init];
+    UILabel *secondTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:secondTitleLabel];
     [titleLabelArray addObject:secondTitleLabel];
-    UILabel *thirdTitleLabel = [[UILabel alloc] init];
+    UILabel *thirdTitleLabel = [self createTitleLabel];
     [self.contentView addSubview:thirdTitleLabel];
     [titleLabelArray addObject:thirdTitleLabel];
     self.titleLabelList = [titleLabelArray copy];
-    //虚拟
-    [firstTitleLabel setText:@"标题"];
-    [secondTitleLabel setText:@"标题"];
-    [thirdTitleLabel setText:@"标题"];
     
     NSMutableArray *priceLabelArray = [NSMutableArray array];
-    UILabel *firstPriceLabel = [[UILabel alloc] init];
+    UILabel *firstPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:firstPriceLabel];
     [priceLabelArray addObject:firstPriceLabel];
-    UILabel *secondPriceLabel = [[UILabel alloc] init];
+    UILabel *secondPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:secondPriceLabel];
     [priceLabelArray addObject:secondPriceLabel];
-    UILabel *thirdPriceLabel = [[UILabel alloc] init];
+    UILabel *thirdPriceLabel = [self createPriceLabel];
     [self.contentView addSubview:thirdPriceLabel];
     [priceLabelArray addObject:thirdPriceLabel];
     self.priceLabelList = [priceLabelArray copy];
-    //虚拟
-    [firstPriceLabel setText:@"价格"];
-    [secondPriceLabel setText:@"价格"];
-    [thirdPriceLabel setText:@"价格"];
     
     __weak __typeof(&*self)weakSelf = self;
     [_mainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(weakSelf).multipliedBy(0.4).priority(900);//具体看图片比例
+        make.height.equalTo(weakSelf.mainImageView.mas_width).multipliedBy(MAIN_IMAGEVIEW_H_W_RATIO);
         make.top.equalTo(weakSelf.contentView);
         make.leading.and.trailing.equalTo(weakSelf.contentView);
     }];
     [firstImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(weakSelf.contentView);
         make.trailing.equalTo(secondImageView.mas_leading);
-        make.top.equalTo(weakSelf.mainImageView.mas_bottom).offset(10);
+        make.top.equalTo(weakSelf.mainImageView.mas_bottom).offset(0);
         make.height.equalTo(firstImageView.mas_width);
     }];
     [secondImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,20 +123,20 @@
     [firstTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstImageView.mas_bottom);
         make.centerX.equalTo(firstImageView);
-        make.width.equalTo(firstImageView);
+        make.width.equalTo(firstImageView).multipliedBy(0.9);
     }];
     [secondTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstTitleLabel);
         make.centerX.equalTo(secondImageView);
-        make.width.equalTo(secondImageView);
+        make.width.equalTo(secondImageView).multipliedBy(0.9);
     }];
     [thirdTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(firstTitleLabel);
         make.centerX.equalTo(thirdImageView);
-        make.width.equalTo(thirdImageView);
+        make.width.equalTo(thirdImageView).multipliedBy(0.9);
     }];
     [firstPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(firstTitleLabel.mas_bottom);
+        make.top.equalTo(firstTitleLabel.mas_bottom).offset(5);
         make.centerX.equalTo(firstTitleLabel);
     }];
     [secondPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,36 +149,23 @@
     }];
 }
 
-- (void)observeBackgroundImageChange {
-    [_mainImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
+- (UILabel *)createTitleLabel {
+    UILabel *label = [[UILabel alloc] init];
+    [label setFont:[UIFont systemFontOfSize:12.f]];
+    [label setTextColor:[UIColor colorWithWhite:0 alpha:1.f]];
+    //虚拟
+    [label setText:@"跨境商品标题有点长"];
+    return label;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"image"]) {
-        UIImage *newImage = change[NSKeyValueChangeNewKey];
-        if ([newImage isMemberOfClass:[NSNull class]]) {
-            return;
-        }
-        [self adaptiveBackgroundImageRatioWithImage:newImage];
-    }
+- (UILabel *)createPriceLabel {
+    UILabel *label = [[UILabel alloc] init];
+    [label setFont:[UIFont systemFontOfSize:13.f]];
+    [label setTextColor:[UIColor redColor]];
+    [label setText:@"¥192.00"];
+    return label;
 }
 
-/**
- BackgroundImage比例适配
- */
-- (void)adaptiveBackgroundImageRatioWithImage:(UIImage *)image {
-    if (0 == image.size.width || 0 == image.size.height) {
-        return;
-    }
-    CGFloat fittingHeight = self.frame.size.width / image.size.width * image.size.height;
-    if (!_mainImageViewHeightConstraint) {
-        self.mainImageViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_mainImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:fittingHeight];
-        [_mainImageViewHeightConstraint setPriority:UILayoutPriorityRequired];
-        [self.contentView addConstraint:_mainImageViewHeightConstraint];
-    } else {
-        _mainImageViewHeightConstraint.constant = fittingHeight;
-    }
-}
 @end
 
 
