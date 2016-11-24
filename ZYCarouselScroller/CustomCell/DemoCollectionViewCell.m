@@ -27,7 +27,7 @@
 
 - (void)setupCell {
     self.mainImageView = [[UIImageView alloc] init];
-    _mainImageView.layer.cornerRadius = 3.f;
+    _mainImageView.layer.cornerRadius = 6.f;
     _mainImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_mainImageView];
     [_mainImageView setTranslatesAutoresizingMaskIntoConstraints:NO];

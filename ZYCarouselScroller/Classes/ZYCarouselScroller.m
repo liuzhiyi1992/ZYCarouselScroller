@@ -13,7 +13,7 @@
 
 #define INFINITE_REPEAT 300
 #define NO_INFINITE_REPEAT 1
-NSUInteger const REPETITION_COEFFICIENT = NO_INFINITE_REPEAT;//创建副本数量
+NSUInteger const REPETITION_COEFFICIENT = INFINITE_REPEAT;//创建副本数量
 
 @interface ZYCarouselScroller () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;

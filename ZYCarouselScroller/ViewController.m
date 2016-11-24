@@ -10,6 +10,7 @@
 #import "ZYCarouselScroller.h"
 #import "DemoCollectionViewCell.h"
 #import "DolphinGoodsCollectionViewCell.h"
+#import "Masonry.h"
 
 @interface ViewController ()
 @end
@@ -55,6 +56,31 @@
     zyCarouselScrollerSecond.dataList = [self generateDolphinDataList];
     zyCarouselScrollerSecond.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     [self.view addSubview:zyCarouselScrollerSecond];
+    
+    //logo
+    UILabel *logoLabel = [[UILabel alloc] init];
+    [logoLabel setText:@"ZYCarouselScroller"];
+    [logoLabel setTextAlignment:NSTextAlignmentCenter];
+    [logoLabel setFont:[UIFont systemFontOfSize:26.f]];
+    [logoLabel setTextColor:[UIColor colorWithWhite:.3f alpha:1.f]];
+    [logoLabel setBackgroundColor:[UIColor colorWithWhite:.95f alpha:1.f]];
+    [self.view addSubview:logoLabel];
+    
+    [zyCarouselScroller mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(20);
+        make.leading.and.trailing.equalTo(self.view);
+        make.height.equalTo(@260);
+    }];
+    [logoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(zyCarouselScroller.mas_bottom);
+        make.leading.and.trailing.equalTo(self.view);
+    }];
+    [zyCarouselScrollerSecond mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(logoLabel.mas_bottom);
+        make.leading.and.trailing.equalTo(self.view);
+        make.height.equalTo(@320);
+        make.bottom.equalTo(self.view);
+    }];
 }
 
 - (NSArray *)generateDolphinGoodsImageUrlList {
@@ -87,7 +113,6 @@
              @"http://app-img.haituncun.com/uploads/images/recommend/bannner/9574777713406cae924043fd63452b3a.jpg"
              ];
 }
-
 
 /**
  Generate 3/Gruop GoodsImage random
