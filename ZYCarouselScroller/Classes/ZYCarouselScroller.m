@@ -130,7 +130,7 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     CGFloat currentOffsetX = scrollView.contentOffset.x;
     CGFloat unitLength = _collectionViewCellSize.width + _collectionViewCellGap;
     CGFloat leadingOffset = _collectionViewCellSize.width - (self.frame.size.width - _collectionViewCellSize.width - 2*_collectionViewCellGap)/2;
-    NSUInteger index;
+    NSInteger index;
     if ((*targetContentOffset).x > currentOffsetX) {//左滑
         index = roundf(currentOffsetX/unitLength);
     } else if ((*targetContentOffset).x < currentOffsetX) {//右滑
