@@ -10,7 +10,10 @@
 
 #define LIMIT_CHANGE_SCALE 0.2
 #define BACKGROUND_COLOR_DEFAULT [UIColor whiteColor]
-NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
+
+#define INFINITE_REPEAT 300
+#define NO_INFINITE_REPEAT 1
+NSUInteger const REPETITION_COEFFICIENT = INFINITE_REPEAT;//创建副本数量
 
 @interface ZYCarouselScroller () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -106,17 +109,6 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     return _collectionViewCellGap;
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    /*
-    //回归中央副本
-    CGPoint locationPoint = CGPointMake(_collectionView.center.x + scrollView.contentOffset.x, _collectionView.center.y);
-    NSIndexPath *currentIndexPath = [_collectionView indexPathForItemAtPoint:locationPoint];
-    NSUInteger relativeIndex = currentIndexPath.row%_dataList.count;
-    NSUInteger absoluteIndex = round(REPETITION_COEFFICIENT/2)*_dataList.count + relativeIndex;
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:absoluteIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-     */
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //dir
     CGFloat offsetX = scrollView.contentOffset.x;
@@ -133,23 +125,21 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     [self makeScaleWithIndexPath:[NSIndexPath indexPathForRow:currentIndexFloat+1 inSection:0]];
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
-}
-
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (velocity.x == 0) {
+        [self autoPositionCellWithScrollContentOffsetX:scrollView.contentOffset.x];
+        return;
+    }
     CGFloat currentOffsetX = scrollView.contentOffset.x;
     CGFloat unitLength = _collectionViewCellSize.width + _collectionViewCellGap;
     CGFloat leadingOffset = _collectionViewCellSize.width - (self.frame.size.width - _collectionViewCellSize.width - 2*_collectionViewCellGap)/2;
-    NSUInteger index;
+    NSInteger index;
     if ((*targetContentOffset).x > currentOffsetX) {//左滑
         index = roundf(currentOffsetX/unitLength);
     } else if ((*targetContentOffset).x < currentOffsetX) {//右滑
         index = roundf(currentOffsetX/unitLength) - 2;
+    } else {
+        return;
     }
     //下一个锚点所处的offset
     CGFloat targetOffsetX = index*unitLength + leadingOffset;
@@ -189,13 +179,20 @@ NSUInteger const REPETITION_COEFFICIENT = 300;//创建副本数量
     [_collectionView layoutIfNeeded];
     //滑动到中央副本
     NSInteger operateIndexPathRow = round(REPETITION_COEFFICIENT/2) * _dataList.count;
-    NSLog(@"处理的row是%ld", (long)operateIndexPathRow);
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    //旧逻辑
+    //[_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     __weak __typeof(&*self)weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow-1 inSection:0]];
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0]];
-        [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow+1 inSection:0]];
+    dispatch_async (dispatch_get_main_queue (),  ^{
+        CGFloat unitLength = weakSelf.collectionViewCellSize.width + weakSelf.collectionViewCellGap;
+        CGFloat leadingOffset = weakSelf.collectionViewCellSize.width - (self.frame.size.width - weakSelf.collectionViewCellSize.width - 2*weakSelf.collectionViewCellGap)/2;
+        //下一个锚点所处的offset
+        CGFloat targetOffsetX = (operateIndexPathRow-1)*unitLength + leadingOffset;
+        [weakSelf.collectionView setContentOffset:CGPointMake(targetOffsetX, 0)];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow-1 inSection:0]];
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow inSection:0]];
+            [weakSelf makeScaleWithIndexPath:[NSIndexPath indexPathForRow:operateIndexPathRow+1 inSection:0]];
+        });
     });
 }
 @end
