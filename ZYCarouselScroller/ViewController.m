@@ -40,6 +40,7 @@
     zyCarouselScroller.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:zyCarouselScroller];
     
+    
     //Style2
     CGFloat cellWidth = 300;
     CGFloat cellHeight = 265;
@@ -87,7 +88,6 @@
              @"http://app-img.haituncun.com/uploads/images/recommend/bannner/9574777713406cae924043fd63452b3a.jpg"
              ];
 }
-
 
 /**
  Generate 3/Gruop GoodsImage random
