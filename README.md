@@ -7,13 +7,18 @@ carousel scroller with your custom CardCell.
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v-blue.svg" />
+<img src="https://img.shields.io/badge/pod-0.0.1-blue.svg" />
 <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" />
 </p>
 
 <br>
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYCarouselScroller/%E6%9C%AA%E6%A0%87%E9%A2%98-4.gif)
 <br>
+
+####Cocoapods   
+```
+pod 'ZYCarouselScroller', '~> 0.0.1'
+```
 
 <br>
 #License  
