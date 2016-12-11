@@ -8,7 +8,6 @@ carousel scroller with your custom CardCell.
 </h1>
 <p align="center">
 <img src="https://img.shields.io/badge/pod-0.0.1-blue.svg" />
-<img src="https://img.shields.io/badge/pod-v0.0.1-blue.svg" />
 <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" />
 </p>
 
