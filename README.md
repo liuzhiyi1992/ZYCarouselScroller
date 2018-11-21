@@ -12,7 +12,7 @@ carousel scroller with your custom CardCell.
 </p>
 
 <br>
-![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYCarouselScroller/%E6%9C%AA%E6%A0%87%E9%A2%98-4.gif)
+![showcase](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYCarouselScroller/%E6%9C%AA%E6%A0%87%E9%A2%98-4.gif)
 <br>
 
 ####Cocoapods   
