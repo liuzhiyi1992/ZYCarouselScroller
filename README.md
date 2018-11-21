@@ -11,7 +11,9 @@ carousel scroller with your custom CardCell.
 <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" />
 </p>
 
+![LTInfiniteScrollView](https://raw.githubusercontent.com/ltebean/LTInfiniteScrollView/master/demo/demo.gif)
 <br>
+![LTInfiniteScrollView](https://raw.githubusercontent.com/ltebean/LTInfiniteScrollView/master/demo/demo.gif)
 ![showcase](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYCarouselScroller/%E6%9C%AA%E6%A0%87%E9%A2%98-4.gif)
 <br>
 
